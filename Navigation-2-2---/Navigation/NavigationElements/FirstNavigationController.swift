@@ -9,11 +9,13 @@
 import UIKit
 
 class FirstNavigationController: UINavigationController {
+    
+    private let createModuleFactory = CreateModuleFactory()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewControllers = [FeedViewController(model: FeedViewControllerModel())]
+        createModuleFactory.createModule(navigatinController: self)
         
         tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"),
                                   selectedImage: UIImage(systemName: "house.fill"))

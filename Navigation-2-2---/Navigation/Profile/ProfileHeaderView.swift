@@ -37,10 +37,10 @@ class ProfileHeaderView: UIView {
         return name
     }()
 
-    private lazy var setStatusButton: CustomButton = { [weak self] in
+    private lazy var setStatusButton: CustomButton = {
         let button = CustomButton(title: "Show status",
                                   color: .systemBlue,
-                                  target: self!.buttonPressed)
+                                  target: { [weak self] in self?.buttonPressed() })
         
         button.tintColor = .white
         button.layer.cornerRadius = 4

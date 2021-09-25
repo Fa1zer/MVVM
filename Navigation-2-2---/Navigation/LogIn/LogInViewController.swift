@@ -8,16 +8,18 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, Coordinatable {
+    
+    var callTabBar: (() -> Void)?
+    weak var tabBar: TabBarController?
+    var delegate: LogInViewControllerDelegate?
     
     private let color = UIColor(patternImage: UIImage(named: "blue_pixel")!)
-    
-    var delegate: LogInViewControllerDelegate?
     
     private lazy var logInButton: CustomButton = {
        let button = CustomButton(title: "Log In",
                                  color: color,
-                                 target: tapButton)
+                                 target: { [weak self] in self?.tapButton() })
         
         button.tintColor = .white
         button.layer.cornerRadius = 10

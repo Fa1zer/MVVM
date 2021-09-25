@@ -2,14 +2,17 @@
 //  ProfileViewController.swift
 //  Navigation
 //
-//  Created by Artemiy Zuzin on 30.05.2021.
+//  Created by Artemiy Zuzin on 25.09.2021.
 //  Copyright © 2021 Artem Novichkov. All rights reserved.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
-
+class ProfileViewController: UIViewController, Coordinatable {
+    
+    weak var tabBar: TabBarController?
+    var callTabBar: (() -> Void)?
+    
     private let headerView = ProfileHeaderView()
     private let logInViewControler = LogInViewController()
     private let cellid = "post"

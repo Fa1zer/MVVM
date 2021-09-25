@@ -9,7 +9,10 @@
 import UIKit
 import StorageService
 
-class PostViewController: UIViewController {    
+class PostViewController: UIViewController, Coordinatable {
+    
+    var callTabBar: (() -> Void)?
+    weak var tabBar: TabBarController?
     var post: Post?
     
     override func viewDidLoad() {

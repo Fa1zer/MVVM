@@ -9,14 +9,14 @@
 import UIKit
 
 
-class FeedViewControllerModel {
+class FeedModel {    
     private let password = "Password"
         
-    func check(word: String){
+    func check(word: String, configuration: inout FeedConfiguration?){
         if word == password {
-            NotificationCenter.default.post(name: NSNotification.Name("green"), object: nil)
+            configuration = .green
         } else {
-            NotificationCenter.default.post(name: NSNotification.Name("red"), object: nil)
+            configuration = .red
         }
     }
 }
