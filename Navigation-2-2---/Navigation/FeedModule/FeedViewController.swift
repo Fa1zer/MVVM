@@ -22,6 +22,8 @@ final class FeedViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var callViewModel: (() -> Void)?
+    
     private var viewModel: FeedOutput & FeedInput
 
     let post: Post = Post(title: "Пост")
