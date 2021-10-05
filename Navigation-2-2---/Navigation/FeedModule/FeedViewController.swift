@@ -14,6 +14,8 @@ final class FeedViewController: UIViewController {
     
     init(viewModel: FeedOutput & FeedInput) {
         self.viewModel = viewModel
+        
+        self.callViewModel = { viewModel.callTabBar?() }
     
         super.init(nibName: nil, bundle: nil)
     }
@@ -22,7 +24,7 @@ final class FeedViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var callViewModel: (() -> Void)?
+    private let callViewModel: () -> Void
     
     private var viewModel: FeedOutput & FeedInput
 
