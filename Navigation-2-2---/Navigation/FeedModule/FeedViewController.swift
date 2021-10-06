@@ -12,18 +12,22 @@ import SnapKit
 
 final class FeedViewController: UIViewController {
     
-    init(model: FeedViewControllerModel){
-        self.model = model
+    init(viewModel: FeedOutput & FeedInput) {
+        self.viewModel = viewModel
         
+        self.callViewModel = { viewModel.callTabBar?() }
+    
         super.init(nibName: nil, bundle: nil)
     }
-    
+        
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var model: FeedViewControllerModel
+    private let callViewModel: () -> Void
     
+    private var viewModel: FeedOutput & FeedInput
+
     let post: Post = Post(title: "Пост")
     
     private let stackView: UIStackView = {
@@ -51,10 +55,10 @@ final class FeedViewController: UIViewController {
         return field
     }()
     
-    private lazy var checkButton: CustomButton = { [weak self] in
+    private lazy var checkButton: CustomButton = {
         let button = CustomButton(title: "check word",
                                   color: .systemBlue,
-                                  target: self!.didTapCheckButton)
+                                  target: { [weak self] in self?.didTapCheckButton() })
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -76,17 +80,17 @@ final class FeedViewController: UIViewController {
     private lazy var postPushButtonFirst: CustomButton = { [weak self] in
         let button = CustomButton(title: "Push Post",
                                   color: .clear,
-                                  target: self!.didTapPushButton)
+                                  target: { [weak self] in self?.didTapPushButton() })
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
     
-    private lazy var postPushButtonSecond: CustomButton = { [weak self] in
+    private lazy var postPushButtonSecond: CustomButton = {
         let button = CustomButton(title: "Push Post",
                                   color: .clear,
-                                  target: self!.didTapPushButton)
+                                  target: { [weak self] in self?.didTapPushButton() })
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -167,6 +171,6 @@ final class FeedViewController: UIViewController {
     }
     
     @objc private func didTapCheckButton() {
-        model.check(word: textField.text!)
+        viewModel.buttonTaped?(textField.text!)
     }
 }

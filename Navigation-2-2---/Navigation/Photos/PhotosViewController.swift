@@ -9,8 +9,11 @@
 import UIKit
 import iOSIntPackage
 
-class PhotosViewController: UIViewController {
+class PhotosViewController: UIViewController, Coordinatable {
     
+    var callTabBar: (() -> Void)?
+    weak var tabBar: TabBarController?
+
     var images =  [UIImageView]()
     
     private let imagePublisherFacade = ImagePublisherFacade()

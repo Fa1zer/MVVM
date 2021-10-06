@@ -8,12 +8,17 @@
 
 import UIKit
 
-class FirstNavigationController: UINavigationController {
+class FirstNavigationController: UINavigationController, Coordinatable {
+    
+    var tabBar: TabBarController?
+    var callTabBar: (() -> Void)?
+    
+    private let createModuleFactory = CreateModuleFactory()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewControllers = [FeedViewController(model: FeedViewControllerModel())]
+        createModuleFactory.createModule(navigatinController: self)
         
         tabBarItem = UITabBarItem(title: "Feed", image: UIImage(systemName: "house.fill"),
                                   selectedImage: UIImage(systemName: "house.fill"))

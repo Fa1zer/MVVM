@@ -9,7 +9,11 @@
 import UIKit
 import SnapKit
 
-class InfoViewController: UIViewController {
+class InfoViewController: UIViewController, Coordinatable {
+    
+    var callTabBar: (() -> Void)?
+    weak var tabBar: TabBarController?
+
     private lazy var button: CustomButton = { [weak self] in
         let button = CustomButton(title: "Tap me",
                                   color: .clear,

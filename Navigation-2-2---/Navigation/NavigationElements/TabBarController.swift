@@ -10,12 +10,26 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    
+    private let profileViewController = ProfileViewController()
+    private let logInViewController = LogInViewController()
+    private let photosViewController = PhotosViewController()
+    private let postViewController = PostViewController()
+    private let infoViewController = InfoViewController()
+    private let feedModule = FeedViewModel()
+    private let firstNavigationController = FirstNavigationController()
+    private let secondNavigationController = SecondNavigationController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        let controllers = [FirstNavigationController(), SecondNavigationController()]
+        
+        profileViewController.tabBar = self
+        logInViewController.tabBar = self
+        photosViewController.tabBar = self
+        postViewController.tabBar = self
+        infoViewController.tabBar = self
+        feedModule.tabBar = self
+
+        let controllers = [firstNavigationController, secondNavigationController]
         
         viewControllers = controllers
         
